@@ -12,8 +12,7 @@ var express    = require('express'),
 /*
 ** CONFIG DATABASE
 */
-// mongoose.connect(config.mongo.url);
-
+mongoose.connect(config.mongo.url);
 /*
 ** CONFIG SERVER
 */
