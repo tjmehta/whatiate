@@ -4,16 +4,15 @@ var express    = require('express'),
     config     = require('./config'),
     routes     = require('./routes'),
     middleware = routes.middleware,
-    core       = core,
-    mongoose   = require('./lib/core/index').db.mongoose,
+    core       = require('./lib/core/index'),
+    mongoose   = core.db.mongoose,
     hbs        = require('hbs'),
     app        = module.exports = express.createServer();
 
 /*
 ** CONFIG DATABASE
 */
-// mongoose.connect(config.mongo.url);
-
+mongoose.connect(config.mongo.url);
 /*
 ** CONFIG SERVER
 */
