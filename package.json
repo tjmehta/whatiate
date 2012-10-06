@@ -1,0 +1,18 @@
+{
+  "name": "whatiate",
+  "description": "what i ate server",
+  "author": "Tejesh Mehta",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "2.x",
+    "cookies": "0.3.x",
+    "hbs"    : "1.0.5",
+    "request": "2.x"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "engine": "node >= 0.6.6"
+}
