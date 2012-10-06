@@ -1,3 +1,7 @@
+var core = require('../lib/core/index'),
+    api = core.api;
+
+
 //auth middleware
 var Auth = function(req, res, next){
   checkAuth(req, res, function(){
@@ -60,7 +64,7 @@ var router = module.exports = function(app){
   });
 
   app.post('/api/users', function(req, res) {
-
+    api.users.login()
   });
 
 };
