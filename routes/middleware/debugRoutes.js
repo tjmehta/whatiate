@@ -1,4 +1,5 @@
-var core = require('whatiate-core');
+var core = require('whatiatecore');
+var helpers = require('whatiatecore').helpers;
 
 var debugRoutes = module.exports = {
   express: function(req, res, next){
