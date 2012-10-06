@@ -2,9 +2,9 @@ var express    = require('express'),
     cookies    = require('cookies'),
     cluster    = require('cluster'),
     config     = require('./config'),
-    // routes     = require('./routes'),
-    // middleware = routes.middleware,
-    // mongoose   = require('app-core').db.mongoose,
+    routes     = require('./routes'),
+    middleware = routes.middleware,
+    mongoose   = require('whatiate-core').db.mongoose,
     hbs        = require('hbs'),
     app        = module.exports = express.createServer();
 
@@ -26,9 +26,9 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(cookies.express());
   app.use(express.methodOverride());
-  // if (config.env == 'development')
-  //   app.use(middleware.debugRoutes.express);
-  // app.use(middleware.respond.express());
+  if (config.env == 'development')
+    app.use(middleware.debugRoutes.express);
+  app.use(middleware.respond.express());
   app.register('html', hbs);
   app.set('views', __dirname + '/static/app');
   app.set('view engine', 'html');
@@ -38,7 +38,7 @@ app.configure(function(){
 /*
 ** ROUTES
 */
-// routes.router(app);
+routes.router(app);
 
 /*
 ** START SERVER

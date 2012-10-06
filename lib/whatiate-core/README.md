@@ -1,0 +1,1 @@
+codenow globals

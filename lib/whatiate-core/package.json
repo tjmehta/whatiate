@@ -1,0 +1,17 @@
+{
+	"name" : "whatiatecore",
+	"description": "core api libraries",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies" : {
+		"whatiatecore":"0.0.1",
+		"mongoose" : "3.0.1",
+		"request"   : "2.x",
+		"serializer": "0.0.3",
+		"bcrypt"    : "0.7.x"
+	},
+	"devDependencies": {
+	"mocha": "*",
+	"should": "*"
+	}
+}
