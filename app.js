@@ -4,7 +4,8 @@ var express    = require('express'),
     config     = require('./config'),
     routes     = require('./routes'),
     middleware = routes.middleware,
-    mongoose   = require('./lib/whatiate-core').db.mongoose,
+    core       = core,
+    mongoose   = require('./lib/core/index').db.mongoose,
     hbs        = require('hbs'),
     app        = module.exports = express.createServer();
 
