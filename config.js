@@ -12,7 +12,7 @@ var development = {
     account_sid: 'ACff0a4e417e0434b8adaa5d32fd0dfee9',
     auth_token: '45321048bf9da7eef81c869bd504740f',
     phone_number: '+16579991283',
-    host_name: ''
+    host_name: 'api.twilio.com'
   },
   remember_the_milk: {
     api_key: '635b1ae46b559e486897014277888949',
