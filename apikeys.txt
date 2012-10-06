@@ -5,3 +5,8 @@ AUTH TOKEN: 45321048bf9da7eef81c869bd504740f
 >Remember the Milk 
 API KEY: 635b1ae46b559e486897014277888949
 SHARED SECRET: c5e71f5620c3acc4
+
+(657) 999-1283  
+Voice https://demo.twilio.com/welcome/voice/
+SMS https://demo.twilio.com/welcome/sms/reply/
+
