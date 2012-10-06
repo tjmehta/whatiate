@@ -9,13 +9,10 @@ var express    = require('express'),
     hbs        = require('hbs'),
     app        = module.exports = express.createServer();
 
-var credentials = require('./credentials.js'); 
-
 /*
 ** CONFIG DATABASE
 */
-// mongoose.connect(config.mongo.url);
-
+mongoose.connect(config.mongo.url);
 /*
 ** CONFIG SERVER
 */

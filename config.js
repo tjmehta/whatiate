@@ -5,8 +5,8 @@ var development = {
   env  : "development",
   port : 3001,
   mongo: {
-    url     : "mongodb://127.0.0.1:1340/whatiate",
-    testUrl : "mongodb://127.0.0.1:1340/whatiate_test"
+    url     : "mongodb://tj:tj@alex.mongohq.com:10060/foodquick",
+    testUrl : "mongodb://tj:tj@alex.mongohq.com:10060/foodquick"
   },
   twilio: {
     account_sid: 'ACff0a4e417e0434b8adaa5d32fd0dfee9',
