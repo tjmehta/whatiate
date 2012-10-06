@@ -59,5 +59,9 @@ var router = module.exports = function(app){
     res.pond('hello world');
   });
 
+  app.post('/api/users', function(req, res) {
+
+  });
+
 };
 
