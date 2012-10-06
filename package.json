@@ -9,7 +9,8 @@
     "cookies": "0.3.x",
     "hbs"    : "1.0.5",
     "request": "2.x",
-    "twilio": "0.4.0"
+    "twilio": "0.4.0",
+    "mongoose": "3.2.1"
   },
   "devDependencies": {
     "mocha": "*",
