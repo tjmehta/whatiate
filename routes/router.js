@@ -44,6 +44,13 @@ var router = module.exports = function(app){
     res.send('hello');
   });
 
+  app.get('/api/login/:phoneNumber', function(req, res){
+    var phoneNumber = "+1"+req.param('phoneNumber');
+    api.users.login(req.cookies, phoneNumber, "", function(error, textMessage){
+      res.pond(textMessage);
+    });
+  });
+
   app.get('/api/food/find/:name', function(req, res){
     api.food.find(req.param('name'), res.pond);
   });
