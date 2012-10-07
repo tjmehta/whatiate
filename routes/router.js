@@ -76,6 +76,12 @@ var router = module.exports = function(app){
     res.render('recent.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
   });
 
+  app.get('/rememberthemilk', function(req, res){
+    api.rememberthemilk.getAndStoreToken(req.cookies.get('userId'), req.query["frob"], function(error, success){
+      res.redirect("/home"+req.cookies.get('userId'));
+    });
+  });
+
   app.get('/details/:user/:food', function(req, res){
     api.food.getById(req.param('food'), function(food)
     {
