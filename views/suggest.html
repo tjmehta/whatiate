@@ -5,9 +5,11 @@
 <script>
 $(function(){
 var listHtml = "";
-listHtml += '<li data-theme="a"><a href="/details/{{userId}}/{{food.id}}">{{food.name}} - ({{food.score}})</a></li>';
+listHtml += '<li data-theme="'+window.whatiate.scoreToTheme({{food.score}})+'"><a href="/details/{{userId}}/{{food.id}}">{{food.name}} - ({{food.score}})</a></li>';
+
 
 $("#suggest").html(listHtml);
+$("#suggest").listview('refresh');
 });
 </script>
 

@@ -5,8 +5,9 @@
 <script>
 $(function(){
 var listHtml = "";
+var userId = "{{userId}}";
 {{#each recent}}
-	listHtml += '<li data-theme="'+window.whatiate.scoreToTheme({{score}})+'"><a href="/details/{{userId}}/{{id}}">{{name}} - ({{score}})</a></li>';
+	listHtml += '<li data-theme="'+window.whatiate.scoreToTheme({{score}})+'"><a href="/details/'+userId+'/{{id}}">{{name}} - ({{score}})</a></li>';
 {{/each}}
 
 $("#recentList").html(listHtml);
