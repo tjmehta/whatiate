@@ -3,7 +3,7 @@
 	whatiate.save = function(url, params)
 	{
 		$.ajax(url, {
-			method : 'get',
+			type : 'POST',
 			data : params,
 			async : false
 		});
