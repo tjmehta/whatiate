@@ -137,6 +137,7 @@ var router = module.exports = function(app){
 	else
 	{
 		res.redirect(api.remember.generateAuthLink());
+		//res.send("<html><script>document.location='"+api.remember.generateAuthLink()+"';</script>");
 	}
   });
 
