@@ -107,7 +107,7 @@ var chart = new Highcharts.Chart({
 
     series: [{
         name: 'Unit',
-        data: [{{weekScore}}],
+        data: [Math.round({{weekScore}})],
         tooltip: {
             valueSuffix: ' points'
         }
