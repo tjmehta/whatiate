@@ -1,9 +1,148 @@
+	<script src="/js/highcharts.js"></script>
+	<script src="/js/highcharts-more.js"></script>
+
+	<script>
+function drawMeter(){
+var meterCheck = $("#healthMeter");
+if(meterCheck.length)
+{
+var chart = new Highcharts.Chart({
+
+    chart: {
+        renderTo: 'healthMeter',
+        type: 'gauge',
+        backgroundColor: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+            stops: [
+                [0, '#EEE'],
+                [1, '#CCC']
+            ]
+        },
+        borderWidth: 1
+    },
+    
+    title: {
+        text: 'Weekly Health-o-Meter'
+    },
+    
+    pane: {
+        startAngle: -150,
+        endAngle: 150,
+        background: [{
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, '#FFF'],
+                    [1, '#333']
+                ]
+            },
+            borderWidth: 0,
+            outerRadius: '109%'
+        }, {
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, '#333'],
+                    [1, '#FFF']
+                ]
+            },
+            borderWidth: 1,
+            outerRadius: '107%'
+        }, {
+            // default background
+        }, {
+            backgroundColor: '#DDD',
+            borderWidth: 0,
+            outerRadius: '105%',
+            innerRadius: '103%'
+        }]
+    },
+       
+    yAxis: {
+        min: 0,
+        max: 10,
+        lineWidth: 0,
+        lineColor: 'gray',
+        gridLineWidth: 0,
+        minPadding: 0,
+        maxPadding: 0,
+        endOnTick: false,
+        startOnTick: false, // todo: fix tickInterval
+        
+        minorTickInterval: 'auto',
+        minorTickWidth: 1,
+        minorTickLength: 10,
+        minorTickPosition: 'inside',
+        minorGridLineWidth: 0,
+        minorTickColor: '#666',
+
+        tickPixelInterval: 30,
+        tickWidth: 2,
+        tickPosition: 'inside',
+        tickLength: 10,
+        tickColor: '#666',
+        startAngle: -150,
+        endAngle: 150,
+        labels: {
+            step: 2,
+            rotation: 'auto'
+        },
+        title: {
+            text: ''
+        },
+        plotBands: [{
+            from: 0,
+            to: 3,
+            color: '#DF5353'
+        }, {
+            from: 3,
+            to: 7,
+            color: '#DDDF0D' // yellow
+        }, {
+            from: 7,
+            to: 10,
+            color: '#55BF3B'
+        }]        
+    },
+
+    series: [{
+        name: 'Unit',
+        data: [{{weekScore}}],
+        tooltip: {
+            valueSuffix: ' points'
+        }
+    }]
+
+}, 
+// Add some life
+function (chart) {return;
+    setInterval(function () {
+        var point = chart.series[0].points[0],
+            newVal,
+            inc = Math.round((Math.random() - 0.5) * 20);
+        
+        newVal = point.y + inc;
+        if (newVal < 0 || newVal > 200) {
+            newVal = point.y - inc;
+        }
+        
+        point.update(newVal);
+        
+    }, 3000);
+
+});
+}
+}
+$(function(){drawMeter();});
+</script>
+
 <div data-role="header">
 	<h1>What I Ate</h1>
 </div><!-- /header -->
 
 <div data-role="content">
-My Points Area!
+<div id="healthMeter" style="height: 200px">
+</div>
 <br>
 <hr>
 	<a href="/logfood/{{userId}}" data-role="button" data-icon="plus" data-theme="a" data-transition="turn">Log a Food</a>
