@@ -56,8 +56,9 @@ var router = module.exports = function(app){
     api.food.getById(req.param('id'), res.pond);
   });  
 
-    app.get('/home/:id', function(req, res){
-    res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
+  app.get('/home/:id', function(req, res){
+    var score = 5;  //TODO: GET PAST WEEK AND AVERAGE!
+    res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id'), weekScore : score || 5 } });
   });
 
   app.get('/times/:id', function(req, res){
