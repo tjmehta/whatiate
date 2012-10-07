@@ -17,7 +17,7 @@ var createSend = function(req, res){
         }
       },
       sendData  = function(data, httpCode){
-        if (data._doc) data = data._doc;
+        // if (data._doc) data = data._doc;
         sendJSON(data, httpCode || 200);
       },
       sendError = function(error, httpCode){
