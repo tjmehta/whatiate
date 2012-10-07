@@ -11,7 +11,7 @@ Cookies.prototype.set = function(key, val){
 };
 Cookies.prototype.get = function(key){
   return this[key];
-}
+};
 var cookies = new Cookies();
 
 describe("Tests:", function(){
@@ -61,7 +61,7 @@ describe("Tests:", function(){
         });
         describe("SMSGetLink:", function(){
           var loginError2, loginMessage2;
-          var messageIn2 = "link"
+          var messageIn2 = "link";
           before(function(done){
             api.users.login(cookies, phoneNumber, messageIn2, function(error, textMessage){
               loginError2 = error;
@@ -81,12 +81,12 @@ describe("Tests:", function(){
           });
           it("should return link", function(){
             should.exist(loginMessage2.match(/http/));
-          })
+          });
         });//login
 
         describe("SMSLog:", function(){
           var loginError2, loginMessage2;
-          var messageIn2 = "orange"
+          var messageIn2 = "orange";
           before(function(done){
             api.users.login(cookies, phoneNumber, messageIn2, function(error, textMessage){
               loginError2 = error;
@@ -109,6 +109,10 @@ describe("Tests:", function(){
             should.exist(loginMessage2.match(/log/));
           });
         });//login
+
+        describe("LOG by Id", function(){
+          var foodId = 45BADAFA-E108-11DF-A102-FEFD45A4D471
+        });
 
         // describe("SMSGetRecommendations:", function(){
         //   var loginError2, loginMessage2;
@@ -135,30 +139,30 @@ describe("Tests:", function(){
         //   })
         // });//login
 
-        describe("getRecent:", function(){
-          var recentError, recentStuff;
-          var messageIn2 = "banana";
-          before(function(done){
-            api.users.login(cookies, phoneNumber, messageIn2, function(error, textMessage){
-              recentError = error;
-              messageIn2 = "mango";
-              api.users.login(cookies, phoneNumber, messageIn2, function(error, textMessage){
-                loginError2 = error;
-                loginMessage2 = textMessage;
+        // describe("getRecent:", function(){
+        //   var recentError, recentStuff;
+        //   var messageIn2 = "banana";
+        //   before(function(done){
+        //     api.users.login(cookies, phoneNumber, messageIn2, function(error, textMessage){
+        //       recentError = error;
+        //       messageIn2 = "mango";
+        //       api.users.login(cookies, phoneNumber, messageIn2, function(error, textMessage){
+        //         loginError2 = error;
+        //         loginMessage2 = textMessage;
 
-                var userId = cookies.get('userId');
-                api.food.getRecent(userId, function(error, recentEats){
+        //         var userId = cookies.get('userId');
+        //         api.food.getRecent(userId, function(error, recentEats){
 
-                });
-                done();
-              });
-            });
-          });
-          it("should NOT return an error", function(){
-            should.not.exist(loginError2);
-            if (loginError2) console.log(loginError2);
-          });
-        });//login
+        //         });
+        //         done();
+        //       });
+        //     });
+        //   });
+        //   it("should NOT return an error", function(){
+        //     should.not.exist(loginError2);
+        //     if (loginError2) console.log(loginError2);
+        //   });
+        // });//login
 
 
     });//smsRegister
