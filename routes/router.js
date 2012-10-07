@@ -1,5 +1,7 @@
 var core = require('../lib/core/index'),
-    api = core.api;
+    api = core.api,
+    config = core.config,
+    twilio = require('twilio').Twiml;
 
 var router = module.exports = function(app){
   //REST - prepend all urls with /api
@@ -8,29 +10,39 @@ var router = module.exports = function(app){
   // put -Update
   // del -Delete
 
+  //Twilio TwiML
+  app.get('/test', function(req, res) {
+    var twimlOptions = {
+      message: "test",
+      from: config.twilio.phone_number,
+      to: "from"
+    };
+    res.contentType('text/xml');
+    res.render('twiml.html', twimlOptions);
+  });
+  app.post('/api/sms', function(req, res){
+    //recieved sms
+    console.log("HELLO");
+    console.log(req.body.From);
+    var smsFrom = req.body.From;
+    api.users.login(smsFrom, function(error, textMessage){
+      var twimlOptions = {
+        message: textMessage,
+        from: config.twilio.phone_number,
+        to: smsFrom
+      };
+      console.log("", twimlOptions, "");
+      res.render('twiml.html', twimlOptions);
+    });
+  });
+
   app.get('/', function(req,res) {
     res.pond('hello world');
   });
 
-  app.post('/api/users', function(req, res) {
-    // api.users.login()
+  app.get('/api', function(req, res){
+    res.send('hello');
   });
 
 };
-
-// Twilio routes
-api.phone.setup(function() {
-  // But wait! What if our number receives an incoming SMS?
-  api.phone.on('incomingSms', function(req, res) {
-
-      // As above, req contains the Twilio request parameters.
-      // Res is a Twiml.Response object.
-      console.log('Received incoming SMS with text: ' + req.Body);
-      console.log('From: ' + req.From);
-
-      api.users.login(req.From, function(error, userLink){
-
-      });
-  });
-});
 

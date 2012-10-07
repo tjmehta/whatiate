@@ -1,0 +1,4 @@
+-r should
+-R spec
+--ui bdd
+--colors

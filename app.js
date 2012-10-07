@@ -13,6 +13,7 @@ var express    = require('express'),
 ** CONFIG DATABASE
 */
 mongoose.connect(config.mongo.url);
+
 /*
 ** CONFIG SERVER
 */
@@ -26,10 +27,11 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(cookies.express());
   app.use(express.methodOverride());
-  app.use(middleware.debugRoutes.express);
+  if (config.env == 'development')
+    app.use(middleware.debugRoutes.express);
   app.use(middleware.respond.express());
   app.register('html', hbs);
-  app.set('views', __dirname + '/static/app');
+  app.set('views', __dirname + '/views');
   app.set('view engine', 'html');
   app.use(express.static(__dirname + "/static/temp"));
 });
