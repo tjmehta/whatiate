@@ -10,6 +10,8 @@
 (function($) {
 
 	"use strict";
+	
+	var timeout = null;
 
 	var defaults = {
 		method: 'GET',
@@ -30,7 +32,7 @@
 			$.each(data, function(index, value) {
 				// are we working with objects or strings?
 				if ($.isPlainObject(value)) {
-					str.push('<li data-icon=' + settings.icon + '><a href="' + settings.link + encodeURIComponent(value.value) + '" data-transition="' + settings.transition + '" data-autocomplete=\'' + JSON.stringify(value) + '\'>' + value.label + '</a></li>');
+					str.push('<li data-theme="'+window.whatiate.scoreToTheme(value.score)+'" data-icon=' + settings.icon + '><a href="' + settings.link + encodeURIComponent(value.id) + '" data-transition="' + settings.transition + '" data-autocomplete=\'' + JSON.stringify(value) + '\'>' + window.whatiate.buildName(value) + '</a></li>');
 				} else {
 					str.push('<li data-icon=' + settings.icon + '><a href="' + settings.link + encodeURIComponent(value) + '" data-transition="' + settings.transition + '">' + value + '</a></li>');
 				}
@@ -61,8 +63,17 @@
 		$this.trigger("targetCleared.autocomplete");
 	},
 	handleInput = function(e) {
-		var $this = $(this),
-			id = $this.attr("id"),
+		if(timeout)
+		{
+			clearTimeout(timeout);
+			timeout = null
+		}
+
+		var $this = $(this);
+
+		timeout = setTimeout(function(e){
+		//var $this = $(this),
+			var id = $this.attr("id"),
 			text,
 			data,
 			settings = $this.jqmData("autocomplete"),
@@ -135,6 +146,7 @@
 				}
 			}
 		}
+		}, 500);
 	},
 	methods = {
 		init: function(options) {

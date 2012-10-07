@@ -1,18 +1,18 @@
-<!--	<script src="js/jqm.autoComplete-1.4.3.js"></script>
+<script src="/js/jqm.autoComplete-1.4.3.js"></script>
 
-	<script>
-		$("#searchField").autocomplete({
-		    method: 'GET', // allows POST as well
-		    icon: 'arrow-r', // option to specify icon
-		    target: $('#suggestions'), // the listview to receive results
-		    source: '/api/food/find?method=search&returnformat=json', // URL return JSON data
-		    callback: fn(){}, // optional callback function fires upon result selection
-		    link: 'target.html?term=', // link to be attached to each result
-		    minLength: 3 // minimum length of search string
-		    transition: 'flip',// page transition, default is fade
-		    matchFromStart: true // search from start, or anywhere in the string
-		});
-	</script>-->
+<script>
+	$(function(){
+	$("#searchField").autocomplete({
+	    method: 'GET', // allows POST as well
+	    icon: 'arrow-r', // option to specify icon
+	    target: $('#suggestions'), // the listview to receive results
+	    source: '/api/food/find', // URL return JSON data
+	    link: '/details/{{userId}}/', // link to be attached to each result
+	    minLength: 3, // minimum length of search string
+	    transition: 'flip',// page transition, default is fade
+	    matchFromStart: true // search from start, or anywhere in the string
+	})});
+</script>
 	
 <div data-role="header">
 	<h1>Log Some Food!</h1>
@@ -23,8 +23,7 @@ My Points Area!
 <br>
 <hr>
 	<p>Enter Food</p>
-	<input type="text" style="width:100%" id="searchField" />
-	<a href="/details/{{userId}}" data-role="button" data-icon="plus" data-theme="a" data-transition="turn">Select</a>
+	<input name="name" type="text" style="width:100%" id="searchField" />
 	<ul data-role="listview" data-inset="true" id="suggestions">
 	</ul>
 </div><!-- /content -->
