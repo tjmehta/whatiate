@@ -2,23 +2,19 @@
 	<h1>Recent Eats</h1>
 </div><!-- /header -->
 
-<div data-role="content">
-My Points Area!
-<br>
-<hr>
-	<p>Today:</p>
-	<ul data-role="listview" data-inset="true">
-	{{#each today}}
-		<li data-theme="b"><a href="#">Chicken - Good! (9)</a></li>
-		<li data-theme="c"><a href="#">Cookies - Alright (6)</a></li>
-	{{/each}}
-	</ul>
-	<br>
-	<p>Yesterday:</p>
-	<ul data-role="listview" data-inset="true">
-		<li data-theme="c"><a href="#">Cats - Bad (2)</a></li>
-		<li data-theme="d"><a href="#">Small Children - Bad (1)</a></li>
-		<li data-theme="b"><a href="#">Steak - Good! (8)</a></li>
-	</ul>
+<script>
+$(function(){
+var listHtml = "";
+{{#each recent}}
+	listHtml += '<li data-theme="'+window.whatiate.scoreToTheme({{score}})+'"><a href="/details/{{userId}}/{{id}}">{{name}} - ({{score}})</a></li>';
+{{/each}}
 
+$("#recentList").html(listHtml);
+});
+</script>
+
+<div data-role="content" style="width:100%; text-align:center">
+	<h3>Eaten in the Past Week:</h3>
+	<ul data-role="listview" data-inset="true" id="recentList">
+	</ul>
 </div><!-- /content -->

@@ -10,5 +10,5 @@
 Score: {{food.score}}<br>
 Serving Size: {{food.serving}}<br>
 Calories: {{food.calories}}<br>
-<a href="" data-role="button" data-icon="plus" data-theme="a" data-transition="turn">Log a Food</a>
+<a href="/home/{{userId}}" onclick="window.whatiate.save('/api/', {user: '{{userId}}', food: '{{food.id}}'});" data-role="button" data-icon="plus" data-theme="b" data-transition="turn">Log It!</a>
 </div><!-- /content -->
