@@ -31,8 +31,8 @@ describe("Tests:", function(){
         done();
       });
     });
-    var phoneNumber="8645251514"
-    describe("SMSLogin:", function(){
+    var phoneNumber="+18645251514"
+    describe("SMSRegister:", function(){
         var loginError, loginMessage;
         before(function(done){
           api.users.login(phoneNumber, function(error, textMessage){
@@ -48,7 +48,37 @@ describe("Tests:", function(){
           console.log(loginMessage);
           should.exist(loginMessage);
         });
+        it("should return Welcome", function(){
+          should.exist(loginMessage.match(/elcome/));
+        });
+        describe("SMSLogin:", function(){
+          var loginError2, loginMessage2;
+          before(function(done){
+            api.users.login(phoneNumber, function(error, textMessage){
+              loginError2 = error;
+              loginMessage2 = textMessage;
+              done();
+            });
+          });
+          it("should NOT return an error", function(){
+            should.not.exist(loginError);
+          });
+          it("should return a text message", function(){
+            console.log(loginMessage);
+            should.exist(loginMessage);
+          });
+          it("should NOT return Welcome", function(){
+            should.exist(loginMessage.match(/elcome/));
+          });
+        });//login
 
-    });
+        describe("Food:", function(){
+          describe("Recommendations:", function(){
+
+          });
+          describe("Log:", function(){
+          });
+        });
+    });//smsRegister
   });
 });
