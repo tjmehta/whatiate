@@ -64,6 +64,8 @@ var router = module.exports = function(app){
   });
 
   app.get('/home/:id', function(req, res){
+    var userIdString = req.param('id');
+    req.cookies.set('userId', userIdString);
     api.food.getRecent(req.param('id'), function(err, list)
     {
 	var score = 0;
@@ -82,6 +84,8 @@ var router = module.exports = function(app){
   });
 
   app.get('/times/:id', function(req, res){
+    var userIdString = req.param('id');
+    req.cookies.set('userId', userIdString);
     res.render('times.html', { layout: 'mobile.html', locals: { userId: req.param('id')} });
   });
 
