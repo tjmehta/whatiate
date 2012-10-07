@@ -11,7 +11,7 @@ var userId = "{{userId}}";
 {{/each}}
 
 $("#recentList").html(listHtml);
-//$("#recentList").listview('refresh');
+setTimeout(function(){$("#recentList").listview('refresh');}, 500);
 });
 </script>
 
