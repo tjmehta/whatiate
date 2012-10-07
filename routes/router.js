@@ -48,6 +48,10 @@ var router = module.exports = function(app){
     api.food.find(req.param('name'), res.pond);
   });
 
+  app.get('/api/food/find', function(req, res){
+    api.food.find(req.param('term'), res.pond);
+  });
+
   app.get('/api/food/getById/:id', function(req, res){
     api.food.getById(req.param('id'), res.pond);
   });  
@@ -57,7 +61,11 @@ var router = module.exports = function(app){
   });
 
   app.get('/times/:id', function(req, res){
-    res.render('times.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
+    var user = api.users.getUserById(req.param('id'));
+    var breakfast = user.breakfast || "08:00 AM";
+    var lunch = user.lunch || "12:00 PM";
+    var dinner = user.dinner || "07:00 PM";
+    res.render('times.html', { layout: 'mobile.html', locals: { userId: req.param('id'), breakfast: breakfast, lunch : lunch, dinner : dinner } });
   });
 
   app.get('/logfood/:id', function(req, res){
