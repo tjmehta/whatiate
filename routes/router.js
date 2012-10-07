@@ -44,5 +44,13 @@ var router = module.exports = function(app){
     res.send('hello');
   });
 
+  app.get('/api/food/find/:name', function(req, res){
+    api.food.find(req.param('name'), res.pond);
+  });
+
+  app.get('/api/food/getById/:id', function(req, res){
+    api.food.getById(req.param('id'), res.pond);
+  });
+
 };
 
