@@ -69,9 +69,15 @@ var router = module.exports = function(app){
   });
 
   app.get('/rememberthemilk', function(req, res){
-    api.rememberthemilk.getAndStoreToken(req.cookies.get('userId'), req.query["frob"], function(error, success){
-      res.redirect("/home"+req.cookies.get('userId'));
+    api.remember.getAndStoreToken('5071bb7564c82f0008000001', req.query["frob"], function(error, success){
+      //req.cookies.get('userId'), req.query["frob"], function(error, success){
+      res.redirect("/home/5071bb7564c82f0008000001");
+      //res.redirect("/home/"+req.cookies.get('userId'));
     });
+  });
+
+  app.get('/milk/link', function(req, res){
+    console.log(api.remember.generateAuthLink());    
   });
 
   app.get('/details/:user/:food', function(req, res){
