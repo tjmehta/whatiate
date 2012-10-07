@@ -52,5 +52,11 @@ var router = module.exports = function(app){
     api.food.getById(req.param('id'), res.pond);
   });
 
+  app.get('/rememberthemilk', function(req, res){
+    api.rememberthemilk.getAndStoreToken(req.cookies.get('userId'), req.query["frob"], function(error, success){
+      res.redirect("/home"+req.cookies.get('userId'));
+    });
+  });
+
 };
 
