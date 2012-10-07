@@ -54,7 +54,7 @@ var router = module.exports = function(app){
 
   app.get('/api/food/getById/:id', function(req, res){
     api.food.getById(req.param('id'), res.pond);
-  });  
+  });
 
   app.get('/home/:id', function(req, res){
     var score = 5;  //TODO: GET PAST WEEK AND AVERAGE!
@@ -87,7 +87,7 @@ var router = module.exports = function(app){
   });
 
   app.get('/milk/link', function(req, res){
-    console.log(api.remember.generateAuthLink());    
+    console.log(api.remember.generateAuthLink());
   });
 
   app.get('/milk/list/food', function(req, res){
@@ -116,8 +116,8 @@ var router = module.exports = function(app){
 
   app.post('/api/:userId/food/log', function(req, res){
     var userId = req.params.userId;
-    var name   = req.body.name;
-    api.food.log(userId, name, res.pond);
+    var foodId   = req.body.food;
+    api.food.logById(userId, foodId, res.pond);
   });
   //returns the name and score just like a recommendation object
 
