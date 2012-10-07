@@ -33,7 +33,7 @@ app.configure(function(){
   app.register('html', hbs);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'html');
-  app.use(express.static(__dirname + "/static/temp"));
+  app.use(express.static(__dirname + "/static"));
 });
 
 /*

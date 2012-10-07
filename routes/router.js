@@ -52,6 +52,30 @@ var router = module.exports = function(app){
     api.food.getById(req.param('id'), res.pond);
   });  
 
+    app.get('/home/:id', function(req, res){
+    res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
+  });
+
+  app.get('/times/:id', function(req, res){
+    res.render('times.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
+  });
+
+  app.get('/logfood/:id', function(req, res){
+    res.render('logfood.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
+  });
+
+  app.get('/recent/:id', function(req, res){
+    res.render('recent.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
+  });
+
+  app.get('/details/:user/:food', function(req, res){
+    api.food.getById(req.param('id'), function(food)
+    {
+	console.log(food);
+    	res.render('details.html', { layout: 'mobile.html', locals: { userId: req.param('userid'), food: food } });
+    });
+  });
+
   app.get('/api/:userId/food/recommendations', function(req, res){
     var userId = req.params.userId;
     api.food.getRecommendations(userId, res.pond);
