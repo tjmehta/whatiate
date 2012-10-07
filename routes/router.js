@@ -88,6 +88,12 @@ var router = module.exports = function(app){
     console.log(api.remember.generateAuthLink());    
   });
 
+  app.get('/milk/list/food', function(req, res){
+    api.remember.getFoodList('d2b7d7ebe54deff9d52c958f8e53c4ed116888df', function(error, data){
+      res.send(data);
+    });
+  });
+
   app.get('/details/:user/:food', function(req, res){
     api.food.getById(req.param('food'), function(food)
     {
