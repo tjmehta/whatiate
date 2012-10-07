@@ -57,17 +57,25 @@ var router = module.exports = function(app){
   });
 
   app.get('/home/:id', function(req, res){
-    var score = 5;  //TODO: GET PAST WEEK AND AVERAGE!
-    res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id'), weekScore : score || 5 } });
+    api.food.getRecent(req.param('id'), function(err, list)
+    {
+	var score = 0;
+	if(list && list.length)
+	{
+		for(var i=0; i<list.length; i++)
+			score += list[i].score;
+		score /= list.length;
+	}
+	else
+	{
+		score = 5
+    	}
+	res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id'), weekScore : score} });
+    });
   });
 
   app.get('/times/:id', function(req, res){
-    api.users.getUserById(req.param('id'), function(user){
-    var breakfast = user.breakfast || "08:00 AM";
-    var lunch = user.lunch || "12:00 PM";
-    var dinner = user.dinner || "07:00 PM";
-    res.render('times.html', { layout: 'mobile.html', locals: { userId: req.param('id'), breakfast: breakfast, lunch : lunch, dinner : dinner } });
-    });
+    res.render('times.html', { layout: 'mobile.html', locals: { userId: req.param('id')} });
   });
 
   app.get('/logfood/:id', function(req, res){
@@ -75,14 +83,19 @@ var router = module.exports = function(app){
   });
 
   app.get('/recent/:id', function(req, res){
-    res.render('recent.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
+    api.food.getRecent(req.param('id'), function(err, list)
+    {
+	if(!list)
+	    list = [];
+    	res.render('recent.html', { layout: 'mobile.html', locals: { userId: req.param('id') , recent : list} });
+    });
   });
 
   app.get('/rememberthemilk', function(req, res){
-    api.remember.getAndStoreToken('5071bb7564c82f0008000001', req.query["frob"], function(error, success){
-      //req.cookies.get('userId'), req.query["frob"], function(error, success){
-      res.redirect("/home/5071bb7564c82f0008000001");
-      //res.redirect("/home/"+req.cookies.get('userId'));
+    api.remember.getAndStoreToken(req.cookies.get('userId'), req.query["frob"], function(error, success){
+	//'5071bb7564c82f0008000001', req.query["frob"], function(error, success){
+      //res.redirect("/suggest/5071bb7564c82f0008000001");
+      res.redirect("/suggest/"+req.cookies.get('userId'));
     });
   });
 
@@ -101,6 +114,23 @@ var router = module.exports = function(app){
     {
     	res.render('details.html', { layout: 'mobile.html', locals: { userId: req.param('user'), food: food } });
     });
+  });
+
+  app.get('/suggest/:user', function(req, res){
+	if(req.cookies.get('milkToken'))
+	{
+		api.food.getRecommendations(req.param('user'), function(error, list)
+		{
+			var topItem = {};
+			if(list && list.length)
+				topItem = list[0];
+			res.render('suggest.html', { layout: 'mobile.html', locals: { userId: req.param('user'), food: topItem } });
+		});
+	}
+	else
+	{
+		res.redirect(api.remember.generateAuthLink());
+	}
   });
 
   app.get('/api/:userId/food/recommendations', function(req, res){
