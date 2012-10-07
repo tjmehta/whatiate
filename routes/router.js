@@ -90,15 +90,19 @@ var router = module.exports = function(app){
   });
 
   app.get('/logfood/:id', function(req, res){
+    var userIdString = req.param('id');
+    req.cookies.set('userId', userIdString);
     res.render('logfood.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
   });
 
-  app.get('/recent/:uid', function(req, res){
-    api.food.getRecent(req.param('uid'), function(err, list)
+  app.get('/recent/:id', function(req, res){
+    var userIdString = req.param('id');
+    req.cookies.set('userId', userIdString);
+    api.food.getRecent(req.param('id'), function(err, list)
     {
 	if(!list)
 	    list = [];
-    	res.render('recent.html', { layout: 'mobile.html', locals: { userId: req.cookies.get('uid') , recent : list} });
+    	res.render('recent.html', { layout: 'mobile.html', locals: { userId: req.cookies.get('userId') , recent : list} });
     });
   });
 
