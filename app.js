@@ -36,6 +36,11 @@ app.configure(function(){
   app.use(express.static(__dirname + "/static"));
 });
 
+process.on('uncaughtException', function(err) { 
+    console.log( " UNCAUGHT EXCEPTION " );
+    console.log( "[Inside 'uncaughtException' event] " + err.stack || err.message );
+});
+
 /*
 ** ROUTES
 */
