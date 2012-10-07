@@ -102,7 +102,7 @@ var router = module.exports = function(app){
     {
 	if(!list)
 	    list = [];
-    	res.render('recent.html', { layout: 'mobile.html', locals: { userId: req.param('uid') , recent : list} });
+	res.render('recent.html', { layout: 'mobile.html', locals: { userId: req.param('id') , recent : list} });
     });
   });
 
