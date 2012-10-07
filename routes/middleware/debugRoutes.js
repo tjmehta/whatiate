@@ -1,4 +1,4 @@
-var core = require("../../lib/core")
+var core = require("../../lib/core");
 var helpers = core.helpers;
 
 var debugRoutes = module.exports = {
