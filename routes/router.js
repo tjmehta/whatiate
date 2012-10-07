@@ -56,16 +56,18 @@ var router = module.exports = function(app){
     api.food.getById(req.param('id'), res.pond);
   });  
 
-    app.get('/home/:id', function(req, res){
-    res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
+  app.get('/home/:id', function(req, res){
+    var score = 5;  //TODO: GET PAST WEEK AND AVERAGE!
+    res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id'), weekScore : score || 5 } });
   });
 
   app.get('/times/:id', function(req, res){
-    var user = api.users.getUserById(req.param('id'));
+    api.users.getUserById(req.param('id'), function(user){
     var breakfast = user.breakfast || "08:00 AM";
     var lunch = user.lunch || "12:00 PM";
     var dinner = user.dinner || "07:00 PM";
     res.render('times.html', { layout: 'mobile.html', locals: { userId: req.param('id'), breakfast: breakfast, lunch : lunch, dinner : dinner } });
+    });
   });
 
   app.get('/logfood/:id', function(req, res){
@@ -97,7 +99,7 @@ var router = module.exports = function(app){
   app.get('/details/:user/:food', function(req, res){
     api.food.getById(req.param('food'), function(food)
     {
-    	res.render('details.html', { layout: 'mobile.html', locals: { userId: req.param('userid'), food: food } });
+    	res.render('details.html', { layout: 'mobile.html', locals: { userId: req.param('user'), food: food } });
     });
   });
 

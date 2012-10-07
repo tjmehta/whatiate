@@ -13,5 +13,5 @@
 	<label for="dinner">Dinner Time</label>
 	<input name="dinner" id="dinner" type="date" data-role="datebox" data-options='{"mode": "timebox"}' value="07:00 PM" />
 	
-	<a href="#" data-role="button" data-theme="a">Start Logging!</a>
+	<a href="/home/" onclick="window.whatiate.save('/api/', {user: '{{userId}}', breakfast: $('#breakfast').val(), lunch: $('#lunch').val(), dinner: $('#dinner').val()});" data-role="button" data-theme="a">Start Logging!</a>
 </div><!-- /content -->
