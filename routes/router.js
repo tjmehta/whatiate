@@ -118,9 +118,19 @@ var router = module.exports = function(app){
 
   app.get('/suggest/:user', function(req, res){
 	if(req.cookies.get('milkToken'))
-		res.render('suggest.html', { layout: 'mobile.html', locals: { userId: req.param('user'), food: {} } });
+	{
+		api.food.getRecommendations(req.param('user'), function(error, list)
+		{
+			var topItem = {};
+			if(list && list.length)
+				topItem = list[0];
+			res.render('suggest.html', { layout: 'mobile.html', locals: { userId: req.param('user'), food: topItem } });
+		});
+	}
 	else
-		res.redirect('/rememberthemilk');
+	{
+		res.redirect(api.remember.generateAuthLink());
+	}
   });
 
   app.get('/api/:userId/food/recommendations', function(req, res){
