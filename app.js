@@ -12,7 +12,7 @@ var express    = require('express'),
 /*
 ** CONFIG DATABASE
 */
-mongoose.connect(config.mongo.url);
+mongoose.connect(config.mongo.url2);
 
 /*
 ** CONFIG SERVER
@@ -36,7 +36,7 @@ app.configure(function(){
   app.use(express.static(__dirname + "/static"));
 });
 
-process.on('uncaughtException', function(err) { 
+process.on('uncaughtException', function(err) {
     console.log( " UNCAUGHT EXCEPTION " );
     console.log( "[Inside 'uncaughtException' event] " + err.stack || err.message );
 });

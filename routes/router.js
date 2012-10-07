@@ -70,13 +70,13 @@ var router = module.exports = function(app){
 	if(list && list.length)
 	{
 		for(var i=0; i<list.length; i++)
-			score += list[i].score;
+			score += parseInt(list[i].score,10);
 		score /= list.length;
 	}
 	else
 	{
 		score = 5
-    	}
+	}
 	res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id'), weekScore : score} });
     });
   });

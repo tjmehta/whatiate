@@ -111,7 +111,7 @@ describe("Tests:", function(){
         });//login
 
         describe("LOG by Id", function(){
-          var foodId = 45BADAFA-E108-11DF-A102-FEFD45A4D471
+          // var foodId = 45BADAFA-E108-11DF-A102-FEFD45A4D471
         });
 
         // describe("SMSGetRecommendations:", function(){
