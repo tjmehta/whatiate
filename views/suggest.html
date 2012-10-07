@@ -1,0 +1,19 @@
+<div data-role="header">
+	<h1>Suggestion For You</h1>
+</div><!-- /header -->
+
+<script>
+$(function(){
+var listHtml = "";
+listHtml += '<li data-theme="'+window.whatiate.scoreToTheme({{food.score}})+'"><a href="/details/{{userId}}/{{food.id}}">{{food.name}} - ({{food.score}})</a></li>';
+
+$("#suggest").html(listHtml);
+});
+</script>
+
+<div data-role="content" style="text-align:center">
+	<h3>Based on what you have, we suggest you eat:</h3>
+	<ul data-role="listview" data-inset="true" id="suggest">
+	</ul>
+</div><!-- /content -->
+
