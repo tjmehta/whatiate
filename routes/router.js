@@ -69,9 +69,8 @@ var router = module.exports = function(app){
   });
 
   app.get('/details/:user/:food', function(req, res){
-    api.food.getById(req.param('id'), function(food)
+    api.food.getById(req.param('food'), function(food)
     {
-	console.log(food);
     	res.render('details.html', { layout: 'mobile.html', locals: { userId: req.param('userid'), food: food } });
     });
   });

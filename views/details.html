@@ -1,9 +1,13 @@
 <div data-role="header">
-	<h1>Cookies</h1>
+	<h1>{{food.name}}</h1>
 </div><!-- /header -->
 
-<div data-role="content">
-{{food.name}}
+<div data-role="content" style="width:100%; text-align:center">
+<img src="{{food.image}}">
 <br>
-
+<h3>{{food.name}}</h3>
+<br><br>
+Score: {{food.score}}<br>
+Serving Size: {{food.serving}}<br>
+Calories: {{food.calories}}<br>
 </div><!-- /content -->
