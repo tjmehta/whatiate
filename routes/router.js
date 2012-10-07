@@ -153,7 +153,7 @@ var router = module.exports = function(app){
   //   ];
 
   app.post('/api/:userId/food/log', function(req, res){
-    var userId = req.params.userId;
+    var userId = req.param('userId');
     var foodId   = req.body.food;
     api.food.logById(userId, foodId, res.pond);
   });
