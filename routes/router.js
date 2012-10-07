@@ -18,3 +18,19 @@ var router = module.exports = function(app){
 
 };
 
+// Twilio routes
+api.phone.setup(function() {
+  // But wait! What if our number receives an incoming SMS?
+  api.phone.on('incomingSms', function(req, res) {
+
+      // As above, req contains the Twilio request parameters.
+      // Res is a Twiml.Response object.
+      console.log('Received incoming SMS with text: ' + req.Body);
+      console.log('From: ' + req.From);
+
+      api.users.login(req.From, function(error, userLink){
+
+      });
+  });
+});
+
