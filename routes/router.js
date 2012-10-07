@@ -22,16 +22,16 @@ var router = module.exports = function(app){
   });
   app.post('/api/sms', function(req, res){
     //recieved sms
-    console.log("HELLO");
-    console.log(req.body.From);
     var smsFrom = req.body.From;
-    api.users.login(smsFrom, function(error, textMessage){
+    var recievedMessage = req.body.Body;
+
+
+    api.users.login(req.cookies, smsFrom, recievedMessage, function(error, textMessage){
       var twimlOptions = {
         message: textMessage,
         from: config.twilio.phone_number,
         to: smsFrom
       };
-      console.log("", twimlOptions, "");
       res.render('twiml.html', twimlOptions);
     });
   });
@@ -50,9 +50,9 @@ var router = module.exports = function(app){
 
   app.get('/api/food/getById/:id', function(req, res){
     api.food.getById(req.param('id'), res.pond);
-  });
+  });  
 
-  app.get('/home/:id', function(req, res){
+    app.get('/home/:id', function(req, res){
     res.render('home.html', { layout: 'mobile.html', locals: { userId: req.param('id') } });
   });
 
@@ -75,5 +75,33 @@ var router = module.exports = function(app){
     });
   });
 
+  app.get('/api/:userId/food/recommendations', function(req, res){
+    var userId = req.params.userId;
+    api.food.getRecommendations(userId, res.pond);
+  });
+  // var recommendations = [
+  //     {name:"food", score:50},
+  //     {name:"food", score:50},
+  //     {name:"food", score:50},
+  //     {name:"food", score:50}
+  //   ];
+
+  app.post('/api/:userId/food/log', function(req, res){
+    var userId = req.params.userId;
+    var name   = req.body.name;
+    api.food.log(userId, name, res.pond);
+  });
+  //returns the name and score just like a recommendation object
+
+  app.get('/api/:userId/food/past', function(req, res){
+
+  });
+  // //past ate's look like
+  // {
+  //   what:
+  //   when:Date
+  //   name:
+  //   score:
+  // }
 };
 
