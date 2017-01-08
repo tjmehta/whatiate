@@ -5,12 +5,12 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "2.x",
-    "cookies": "0.3.x",
-    "hbs"    : "1.0.5",
+    "express": "^4.14.0",
+    "cookies": "~0.6.2",
+    "hbs"    : "4.0.1",
     "request": "2.x",
-    "twilio": "0.4.0",
-    "mongoose": "3.2.1"
+    "twilio": "2.11.1",
+    "mongoose": "4.7.6"
   },
   "devDependencies": {
     "mocha": "*",
