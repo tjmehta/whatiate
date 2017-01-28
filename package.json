@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "^4.14.0",
+    "express": "^4.14.1",
     "cookies": "~0.6.2",
     "hbs"    : "4.0.1",
     "request": "2.x",
