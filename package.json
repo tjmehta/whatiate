@@ -7,7 +7,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "cookies": "~0.6.2",
-    "hbs"    : "4.0.1",
+    "hbs"    : "4.0.2",
     "request": "2.x",
     "twilio": "2.11.1",
     "mongoose": "4.7.6"
