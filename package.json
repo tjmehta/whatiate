@@ -13,7 +13,7 @@
     "mongoose": "4.7.6"
   },
   "devDependencies": {
-    "mocha": "*",
+    "mocha": ">=7.2.0",
     "should": "*"
   },
   "engine": "node >= 0.6.6"
